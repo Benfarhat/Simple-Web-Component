@@ -7,31 +7,8 @@ class Hello extends HTMLElement {
     constructor(){
         super();
         
-        console.log('Custom element instanciated.');
-        
+        console.log('Custom element instanciated.');  
         this.shadow = this.attachShadow({mode: 'open'});
-
-        var style = document.createElement('style');
-        style.innerText = `
-        :host {
-          display:block;
-          font-family: monospace;
-          font-size: 1em;
-          color: #fff;
-          padding: 12px 24px;
-          background-color: #16a085;
-          border-radius: 6px;
-          width: 280px;
-          margin: 0 auto;
-          text-align: center;
-        }`;
-        var template = document.createElement('template');
-        template.innerHTML = `
-        <h1>Hello the world</h1>
-        `;
-        this.shadow.appendChild(style);
-        this.shadow.appendChild(template.content.cloneNode(true));
-
 
     }
 
@@ -42,11 +19,56 @@ class Hello extends HTMLElement {
     set message(newMessage) {
         this.setAttribute('message', newMessage);
     }
+
     connectedCallback(){
         console.log('Custom element added to page.');
-        this.shadow.querySelector('h1').innerHTML= this.getAttribute('title');
 
+        const defaultRootTagName = 'p';
+        const defaultTheme = 'green';
+        // Style
+
+        let theme = this.hasAttribute('theme') ? this.getAttribute('theme') : defaultTheme;
+        let color;
+        switch(theme) {
+            case 'green':   color = '#16a085'; break;
+            case 'orange':  color = '#d35400'; break;
+            case 'red':     color = '#e74c3c'; break;
+            case 'blue':    color = '#2980b9'; break;
+            case 'dark':    color = '#212121'; break;
+            default:        color = '#16a085';
+
+        }
+
+        var style = document.createElement('style');
+        style.innerHTML = `
+        :host {
+          display:block;
+          font-family: monospace;
+          font-size: 1em;
+          color: #fff;
+          padding: 8px 16px;
+          background-color: ${color};
+          border-radius: 6px;
+          width: 280px;
+          text-align: center;
+          margin: 4px;
+        }`;
+        this.shadow.appendChild(style);
+
+        // Content
+        let title = this.hasAttribute('title') ? this.getAttribute('title') : '';
+        let rootTagName = this.hasAttribute('root') ? this.getAttribute('root') : defaultRootTagName;
+
+        let template = document.createElement(rootTagName);
+        template.innerHTML = title;
+
+        this.shadow.appendChild(template.cloneNode(true));
+
+
+
+        
     }
+
     disconnectedCallback() {
         console.log('Custom element removed from page.');
     }
