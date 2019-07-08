@@ -1,0 +1,25 @@
+{
+  "name": "webcomponent",
+  "version": "1.0.0",
+  "description": "Simple Web Component",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Benfarhat/Simple-Web-Component.git"
+  },
+  "keywords": [
+    "webcomponent"
+  ],
+  "author": "Benfarhat Elyes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Benfarhat/Simple-Web-Component/issues"
+  },
+  "homepage": "https://github.com/Benfarhat/Simple-Web-Component#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.7"
+  }
+}
