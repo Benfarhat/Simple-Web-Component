@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/Benfarhat/Simple-Web-Component#readme",
   "devDependencies": {
-    "browser-sync": "^2.26.7"
+    "browser-sync": "^2.27.10"
   }
 }
